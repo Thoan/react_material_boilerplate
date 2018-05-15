@@ -1,24 +1,24 @@
 module.exports = [{
-  entry: './app.scss',
+  entry: "./app.scss",
   output: {
     // This is necessary for webpack to compile
     // But we never use style-bundle.js
-    filename: 'style-bundle.js',
+    filename: "style-bundle.js",
   },
   module: {
     rules: [{
       test: /\.scss$/,
       use: [
         {
-          loader: 'file-loader',
+          loader: "file-loader",
           options: {
-            name: 'bundle.css',
+            name: "bundle.css",
           },
         },
-        { loader: 'extract-loader' },
-        { loader: 'css-loader' },
+        { loader: "extract-loader" },
+        { loader: "css-loader" },
         {
-          loader: 'sass-loader',
+          loader: "sass-loader",
           options: {
             includePaths: ["./node_modules"]
           }
@@ -29,16 +29,17 @@ module.exports = [{
 }];
 
 module.exports.push({
-  entry: "./app.js",
+  entry: "./index.js",
   output: {
     filename: "bundle.js"
   },
   module: {
     loaders: [{
       test: /\.js$/,
-      loader: 'babel-loader',
+      loader: "babel-loader",
       query: {
-        presets: ['es2015']
+        presets: ["react","es2015"],
+        plugins: ["transform-class-properties"]
       }
     }]
   },
